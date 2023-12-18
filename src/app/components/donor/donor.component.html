@@ -1,0 +1,45 @@
+<h1>Blood Bank - Donor Management</h1>
+
+<div>
+    <h3>Add Donor</h3>
+    <form (submit)="addDonor()">
+        <input type="text" name="name" placeholder="Name" [(ngModel)]="newDonor.name">
+        <input type="text" name="bloodGroup" placeholder="Blood Group" [(ngModel)]="newDonor.bloodGroup">
+        <input type="text" name="contact" placeholder="Contact" [(ngModel)]="newDonor.contact">
+        <input type="text" name="address" placeholder="Address" [(ngModel)]="newDonor.address">
+        <button type="submit">Add Donor</button>
+    </form>
+</div>
+
+<div>
+    <h3>Search Donors</h3>
+    <input type="text" placeholder="Search Donors" [(ngModel)]="searchKeyword">
+</div>
+
+<div>
+    <h3>List of Donors</h3>
+    <ul>
+        <li *ngFor="let donor of filteredDonors">
+            <div>
+                <h4>{{ donor.name }}</h4>
+                <p>Blood Group: {{ donor.bloodGroup }}</p>
+                <p>Contact: {{ donor.contact }}</p>
+                <p>Address: {{ donor.address }}</p>
+                <button (click)="editDonor(donor)">Edit</button>
+                <button (click)="deleteDonor(donor)">Delete</button>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="isEditing">
+    <h3>Edit Donor</h3>
+    <form (submit)="saveEditedDonor()">
+        <input type="text" name="name" placeholder="Name" [(ngModel)]="editedDonor.name">
+        <input type="text" name="bloodGroup" placeholder="Blood Group" [(ngModel)]="editedDonor.bloodGroup">
+        <input type="text" name="contact" placeholder="Contact" [(ngModel)]="editedDonor.contact">
+        <input type="text" name="address" placeholder="Address" [(ngModel)]="editedDonor.address">
+        <button type="submit">Save</button>
+        <button type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
+</div>
